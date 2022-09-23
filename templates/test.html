@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template - Page</title>
+</head>
+
+<body>
+    <h1>Bestyield IOT Sensor View Page </h1>
+    <h2>{{text}}</h2>
+
+    {% if appInfo != undefined %}
+
+    <h2>AppInfo : </h2>
+    <p>iot : {{appInfo.iot}}</p>
+    <p>temperature : {{appInfo.temperature}}</p>
+    <p>humidity : {{appInfo.humidity}}</p>
+    <p>lux : {{appInfo.lux}}</p>
+    <p>tvoc : {{appInfo.tvoc}}</p>
+    <p>co2 : {{appInfo.co2}}</p>
+    <p>pm25 : {{appInfo.pm25}}</p>
+    <p>time : {{appInfo.time}}</p>
+    {% endif %}
+
+    {% if data != undefined %}
+    <h2>Data : </h2>
+    <table border="1">
+        {% for key, value in data.items() %}
+        <tr>
+            <th> {{ key }} </th>
+            <td> {{ value }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+
+</html>

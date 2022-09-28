@@ -44,14 +44,14 @@ def handle_mqtt_message(client, userdata, message):
     lux = msg.split(':')[4].split(',')[0]
     tvoc = msg.split(':')[5].split(',')[0]
     co2 = msg.split(':')[6].split(',')[0]
-    pm25 = msg.split(':')[7].split(',')[0].split('\n')[0]
+    pm25 = msg.split(':')[7].split(',')[0].split('}')[0]
     # timenow = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    print('temperature = ', temperature)
-    print('humidity = ', humidity)
-    print('lux = ', lux)
-    print('tvoc = ', tvoc)
-    print('co2 = ', co2)
-    print('pm25 = ', pm25)
+    # print('temperature = ', temperature)
+    # print('humidity = ', humidity)
+    # print('lux = ', lux)
+    # print('tvoc = ', tvoc)
+    # print('co2 = ', co2)
+    # print('pm25 = ', pm25)
     conn = sqlite3.connect('iots.sqlite3')
     c = conn.cursor()
     c.execute("INSERT INTO iots (iot, temperature, humidity, lux, tvoc, co2, pm25, time) VALUES (%s,%s,%s,%s,%s,%s,%s,datetime('now','localtime'))"%(iot, temperature, humidity, lux, tvoc, co2, pm25))
@@ -98,8 +98,9 @@ def root():
     # conn1.commit()
     # conn1.close()
 
-    return render_template('test.html', appInfo=appInfo)
+    return render_template('test_temp2.html', appInfo=appInfo)
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000)
+    # app.run(host='127.0.0.1', port=5000)
+    app.run(host='0.0.0.0', port=5000)
